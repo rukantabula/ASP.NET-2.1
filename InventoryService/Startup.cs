@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc;
+using InventoryService.Services;
 
 namespace InventoryService
 {
@@ -17,7 +18,9 @@ namespace InventoryService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); 
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton<IInventoryServices, InventoryServices>(); // inventory service class is bind via dependendency injection to IInventory services interface
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
